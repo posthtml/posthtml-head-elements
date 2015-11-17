@@ -10,7 +10,7 @@ module.exports = function postHeadElements() {
 
     return tree.match({tag: 'head'}, function(node) {
 
-      //sconsole.dir(node);
+      console.dir(node);
 
       return node;
     });
