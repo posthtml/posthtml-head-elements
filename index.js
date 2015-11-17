@@ -1,3 +1,18 @@
-/**
- * Created by andywalpole on 14/11/2015.
- */
+'use strict';
+
+module.exports = function postHeadElements() {
+
+  // var headOptions = options || {};
+
+  return function(tree) {
+
+    console.log('here it is');
+
+    return tree.match({tag: 'head'}, function(node) {
+
+      //sconsole.dir(node);
+
+      return node;
+    });
+  };
+};

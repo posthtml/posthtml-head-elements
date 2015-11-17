@@ -3,12 +3,11 @@
   "maxdepth": 5,
   "maxstatements": 5,
   "maxcomplexity": 5,
-  "maxerr": 100,
+  "maxerr": 10,
   "passfail": false,
   "smarttabs": true,
   "node": true,
   "browser": true,
-
   "globals": {
     "require": true,
     "module": true,
@@ -24,7 +23,7 @@
     "describe": false,
     "beforeEach": false,
     "it": false,
-    "expect": false,
+    "expect": true,
     "inject": false,
     "afterEach": false,
     "_": false,
@@ -69,7 +68,6 @@
   "supernew": false,
   "undef": true,
   "unused": true,
-
   "quotmark": "single",
   "camelcase": true,
   "indent": 2,

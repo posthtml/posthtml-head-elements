@@ -3,8 +3,23 @@
   "version": "0.1.0",
   "description": "Build HTML header elements from a JSON file",
   "main": "index.js",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "jscs": "^2.5.1",
+    "jshint": "^2.8.0",
+    "lodash": "^3.10.1",
+    "mocha": "^2.3.3",
+    "posthtml": "^0.7.0",
+    "posthtml-parser": "^0.1.1",
+    "posthtml-render": "^1.0.3",
+    "snyk": "^1.1.1"
+  },
+  "dependencies": {
+    "request": "^2.65.0"
+  },
+  "peerDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "snyk test && jscs {,*/}*.js && jshint {,*/}*.js && mocha test/test.js"
   },
   "repository": {
     "type": "git",
@@ -18,12 +33,5 @@
   "bugs": {
     "url": "https://github.com/TCotton/posthtml-head-elements/issues"
   },
-  "homepage": "https://github.com/TCotton/posthtml-head-elements#readme",
-  "devDependencies": {
-    "chai": "^3.4.1",
-    "jscs": "^2.5.1",
-    "jshint": "^2.8.0",
-    "mocha": "^2.3.3",
-    "posthtml": "^0.7.0"
-  }
+  "homepage": "https://github.com/TCotton/posthtml-head-elements#readme"
 }
