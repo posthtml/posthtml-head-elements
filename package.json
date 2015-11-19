@@ -9,6 +9,7 @@
     "jshint": "^2.8.0",
     "mocha": "^2.3.3",
     "posthtml": "^0.7.0",
+    "posthtml-render": "^1.0.3",
     "snyk": "^1.1.1"
   },
   "peerDependencies": {},

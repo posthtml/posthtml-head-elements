@@ -1,27 +1,25 @@
 'use strict';
 
 var util = require('util');
+var render = require('posthtml-render');
+var posthtml = require('posthtml');
 
 function nonString(type, content) {
 
   var x;
-  var newObject = {};
+  var newObject = '';
 
   for (x = 0; x < content.length; x++) {
-    newObject[x] = {};
-    newObject[x].tag = type;
-    newObject[x].attrs = content[x];
+    newObject += render({tag: type, attrs: content[x]});
+    newObject += '\n';
   }
-
-  Object.keys(newObject).map(function(value, key) {
-    console.dir(newObject[value]);
-    console.dir(key);
-  });
-
-  //console.dir(Object.keys(newObject).length);
 
   return newObject;
 
+}
+
+function nonArray(type, content) {
+  return render({tag: type, content: [content]})
 }
 
 /**
@@ -43,10 +41,7 @@ function findElmType(type, objectData) {
     'title': function() {
 
       if (typeof objectData === 'string') {
-        return {
-          tag: 'title',
-          content: [objectData]
-        };
+        return nonArray('title', objectData);
       } else {
         util.log('posthtml-head-elements: Please use the correct syntax for a title element');
       }
@@ -90,7 +85,6 @@ function buildNewTree(headElements) {
   Object.keys(headElements).forEach(function(value) {
 
     newHeadElements.push(findElmType(value, headElements[value]));
-    // newHeadElements.push('\n');
 
   });
 
@@ -114,35 +108,26 @@ module.exports = function(options) {
     tree.match({tag: options.headElementsTag}, function(node) {
 
       node = {};
+      var newHTML = '';
+      var x;
 
-      Object.keys(newTree).forEach(function(value) {
+      for (x = 0; x < newTree.length; x++) {
+        newHTML += newTree[x];
+      }
 
-        if (typeof newTree[value].tag !== 'undefined' && newTree[value].tag === 'title') {
-          Object.assign(node, newTree[value]);
-        } else {
-
-          console.log('here');
-          console.dir(newTree[value]);
-
-          Object.keys(newTree[value]).map(function(key) {
-            // console.dir(newTree[value][key]);
-          });
-
-        }
-
-      });
+      node = newHTML;
 
       return node;
     });
 
-    tree.walk(function(node) {
+   /* tree.walk(function(node) {
 
       if (node.tag === 'head') {
-        //console.dir(node.content);
+        console.dir(node.content);
       }
 
       return node;
-    });
+    });*/
 
     return tree;
 
