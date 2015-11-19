@@ -5,19 +5,11 @@
   "main": "index.js",
   "devDependencies": {
     "chai": "^3.4.1",
-    "deepmerge": "^0.2.10",
-    "extend": "^3.0.0",
     "jscs": "^2.5.1",
     "jshint": "^2.8.0",
-    "lodash": "^3.10.1",
     "mocha": "^2.3.3",
     "posthtml": "^0.7.0",
-    "posthtml-parser": "^0.1.1",
-    "posthtml-render": "^1.0.3",
     "snyk": "^1.1.1"
-  },
-  "dependencies": {
-    "request": "^2.65.0"
   },
   "peerDependencies": {},
   "scripts": {

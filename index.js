@@ -1,7 +1,6 @@
 'use strict';
 
 var util = require('util');
-var extend = require('extend');
 
 function nonString(type, content) {
 
@@ -13,6 +12,13 @@ function nonString(type, content) {
     newObject[x].tag = type;
     newObject[x].attrs = content[x];
   }
+
+  Object.keys(newObject).map(function(value, key) {
+    console.dir(newObject[value]);
+    console.dir(key);
+  });
+
+  //console.dir(Object.keys(newObject).length);
 
   return newObject;
 
@@ -84,7 +90,7 @@ function buildNewTree(headElements) {
   Object.keys(headElements).forEach(function(value) {
 
     newHeadElements.push(findElmType(value, headElements[value]));
-    //newHeadElements.push('\n');
+    // newHeadElements.push('\n');
 
   });
 
@@ -97,36 +103,32 @@ module.exports = function(options) {
   options = options || {};
   options.headElementsTag = 'posthtml-head-elements';
 
-  /*  if (!options.headElements) {
-   util.log('posthtml-head-elements: Don\'t forget to add a link to the JSON file containing the head elements to insert');
-   }*/
+  if (!options.headElements) {
+    util.log('posthtml-head-elements: Don\'t forget to add a link to the JSON file containing the head elements to insert');
+  }
 
   return function postHeadElements(tree) {
 
-    tree.match({tag: options.headElementsTag}, function(node) {
+    var newTree = buildNewTree(options.headElements);
 
-      var newTree = buildNewTree(options.headElements);
+    tree.match({tag: options.headElementsTag}, function(node) {
 
       node = {};
 
       Object.keys(newTree).forEach(function(value) {
 
         if (typeof newTree[value].tag !== 'undefined' && newTree[value].tag === 'title') {
-
-          // Object.assign(node, newTree[value]);
-
+          Object.assign(node, newTree[value]);
         } else {
 
-          Object.getOwnPropertyNames(newTree[value]).forEach(function(val, idx, array) {
-            
-            extend(node, newTree[value][val]);
-            /* console.dir(newTree[value][val].tag);
-             console.dir(newTree[value][val].attrs);*/
-            //Object.assign(node, newTree[value][val]);
+          console.log('here');
+          console.dir(newTree[value]);
+
+          Object.keys(newTree[value]).map(function(key) {
+            // console.dir(newTree[value][key]);
           });
 
         }
-
 
       });
 
@@ -136,7 +138,7 @@ module.exports = function(options) {
     tree.walk(function(node) {
 
       if (node.tag === 'head') {
-        console.dir(node.content);
+        //console.dir(node.content);
       }
 
       return node;
