@@ -46,6 +46,23 @@ This plugin allow you to keep HTML head elements - title, script, link, base and
 }
 ```
 
+A custom tag is place in the document head, which signifies where the HTML head elements should be inserted during the build process:
+
+```html
+
+<!doctype html>
+<html lang="en">
+<head>
+
+  <posthtml-head-elements></posthtml-head-elements>
+  
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Web Starter Kit">
+
+```
+
+
 This is then configured like so:
 
 ```javascript
