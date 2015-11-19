@@ -50,13 +50,17 @@ This is then configured like so:
 
 ```javascript
 posthtml()
-    .use(require('posthtml-head-elements')({headElements: 'path/to/json/file.json}))
-    .process(input, {sync: false})
+    .use(require('posthtml-head-elements')({
+        headElements: 'path/to/json/file.json'
+    }))
+    .process(input, {
+        sync: false
+    })
     .then(function(result) {
-      console.log('result');
-      console.dir(result);
-      done();
+        console.log('result');
+        console.dir(result);
+        done();
     }).catch(function(error) {
-    done(error);
-  });
+        done(error);
+    });
 ```
