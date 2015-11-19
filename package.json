@@ -5,6 +5,8 @@
   "main": "index.js",
   "devDependencies": {
     "chai": "^3.4.1",
+    "deepmerge": "^0.2.10",
+    "extend": "^3.0.0",
     "jscs": "^2.5.1",
     "jshint": "^2.8.0",
     "lodash": "^3.10.1",

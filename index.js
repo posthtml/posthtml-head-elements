@@ -1,18 +1,149 @@
 'use strict';
 
-module.exports = function postHeadElements() {
+var util = require('util');
+var extend = require('extend');
 
-  // var headOptions = options || {};
+function nonString(type, content) {
 
-  return function(tree) {
+  var x;
+  var newObject = {};
 
-    console.log('here it is');
+  for (x = 0; x < content.length; x++) {
+    newObject[x] = {};
+    newObject[x].tag = type;
+    newObject[x].attrs = content[x];
+  }
 
-    return tree.match({tag: 'head'}, function(node) {
+  return newObject;
 
-      console.dir(node);
+}
+
+/**
+ *
+ * @param type {string}
+ * @param objectData {object}
+ * @returns {*}
+ */
+function findElmType(type, objectData) {
+  var elementType = {
+    'meta': function() {
+
+      if (Array.isArray(objectData)) {
+        return nonString(type, objectData);
+      } else {
+        util.log('posthtml-head-elements: Please use the correct syntax for a meta element');
+      }
+    },
+    'title': function() {
+
+      if (typeof objectData === 'string') {
+        return {
+          tag: 'title',
+          content: [objectData]
+        };
+      } else {
+        util.log('posthtml-head-elements: Please use the correct syntax for a title element');
+      }
+
+    },
+    'link': function() {
+
+      if (Array.isArray(objectData)) {
+        return nonString(type, objectData);
+      } else {
+        util.log('posthtml-head-elements: Please use the correct syntax for a link element');
+      }
+
+    },
+    'script': function() {
+
+      if (Array.isArray(objectData)) {
+        return nonString(type, objectData);
+      } else {
+        util.log('posthtml-head-elements: Please use the correct syntax for a script element');
+      }
+
+    },
+    'base': function() {
+
+      if (Array.isArray(objectData)) {
+        return nonString(type, objectData);
+      } else {
+        util.log('posthtml-head-elements: Please use the correct syntax for a base element');
+      }
+
+    }
+  };
+  return elementType[type]();
+}
+
+function buildNewTree(headElements) {
+
+  var newHeadElements = [];
+
+  Object.keys(headElements).forEach(function(value) {
+
+    newHeadElements.push(findElmType(value, headElements[value]));
+    //newHeadElements.push('\n');
+
+  });
+
+  return newHeadElements;
+
+}
+
+module.exports = function(options) {
+
+  options = options || {};
+  options.headElementsTag = 'posthtml-head-elements';
+
+  /*  if (!options.headElements) {
+   util.log('posthtml-head-elements: Don\'t forget to add a link to the JSON file containing the head elements to insert');
+   }*/
+
+  return function postHeadElements(tree) {
+
+    tree.match({tag: options.headElementsTag}, function(node) {
+
+      var newTree = buildNewTree(options.headElements);
+
+      node = {};
+
+      Object.keys(newTree).forEach(function(value) {
+
+        if (typeof newTree[value].tag !== 'undefined' && newTree[value].tag === 'title') {
+
+          // Object.assign(node, newTree[value]);
+
+        } else {
+
+          Object.getOwnPropertyNames(newTree[value]).forEach(function(val, idx, array) {
+            
+            extend(node, newTree[value][val]);
+            /* console.dir(newTree[value][val].tag);
+             console.dir(newTree[value][val].attrs);*/
+            //Object.assign(node, newTree[value][val]);
+          });
+
+        }
+
+
+      });
 
       return node;
     });
+
+    tree.walk(function(node) {
+
+      if (node.tag === 'head') {
+        console.dir(node.content);
+      }
+
+      return node;
+    });
+
+    return tree;
+
   };
+
 };

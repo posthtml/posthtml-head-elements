@@ -48,8 +48,8 @@ Object.keys(jsonOne).forEach(function(key, value) {
 
   if (Array.isArray(jsonOne[key])) {
 
-    console.log(key);
-    console.dir(jsonOne[key]);
+    // console.log(key);
+    // console.dir(jsonOne[key]);
 
   }
 
@@ -107,10 +107,13 @@ Object.keys(jsonOne).forEach(function(key, value) {
  */
 
 function test(input, done) {
+  console.log('run test');
   posthtml()
-    .use(posthtmlHeadElements())
-    .process(input)
-    .then(function() {
+    .use(posthtmlHeadElements({headElements: jsonOne}))
+    .process(input, {sync: false})
+    .then(function(result) {
+      console.log('result');
+      console.dir(result);
       // console.dir(result);
       // expect(output).to.eql(result.html);
       done();

@@ -16,26 +16,5 @@
       "content": "width=device-width, initial-scale=1"
     }
   ],
-  "title": "Web Starter Kit",
-  "link": [
-    {
-      "rel": "manifest",
-      "href": "manifest.json"
-    },
-    {
-      "rel": "icon",
-      "sizes": "192x192",
-      "href": "images/touch/chrome-touch-icon-192x192.png"
-    }
-  ],
-  "script": [
-    {
-      "src": "//cdn.polyfill.io/v1/polyfill.min.js"
-    }
-  ],
-  "base": [
-    {
-      "href": "/"
-    }
-  ]
+  "title": "Web Starter Kit"
 }
