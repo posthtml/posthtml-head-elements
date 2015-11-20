@@ -1,4 +1,7 @@
-# posthtml-head-elements
+# posthtml-head-elements [![Build Status][ci-img]][ci]
+
+[ci-img]: https://travis-ci.org/TCotton/posthtml-head-elements.svg
+[ci]: https://travis-ci.org/TCotton/posthtml-head-elements
 
 This plugin allow you to keep HTML head elements - title, script, link, base and meta - in a separate JSON file:
 
