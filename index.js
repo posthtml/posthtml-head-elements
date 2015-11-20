@@ -41,7 +41,7 @@ function findElmType(type, objectData) {
     'title': function() {
 
       if (typeof objectData === 'string') {
-        return nonArray('title', objectData);
+        return nonArray(type, objectData);
       } else {
         util.log('posthtml-head-elements: Please use the correct syntax for a title element');
       }
