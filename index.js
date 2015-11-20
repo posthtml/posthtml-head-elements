@@ -1,24 +1,25 @@
 'use strict';
 
 var util = require('util');
-var render = require('posthtml-render');
-
-function nonString(type, content) {
+function nonString(type, attrsArr) {
 
   var x;
-  var newObject = '';
+  var newContent = [];
 
-  for (x = 0; x < content.length; x++) {
-    newObject += render({tag: type, attrs: content[x]});
-    newObject += '\n';
+  for (x = 0; x < attrsArr.length; x++) {
+    newContent.push({tag: type, attrs: attrsArr[x]});
+    newContent.push('\n'); // ?
   }
 
-  return newObject;
+  return newContent;
 
 }
 
 function nonArray(type, content) {
-  return render({tag: type, content: [content]});
+  return [
+    {tag: type, content: [content]},
+    '\n'
+  ];
 }
 
 /**
@@ -88,7 +89,7 @@ function buildNewTree(headElements) {
 
   });
 
-  return newHeadElements;
+  return Array.prototype.concat.apply([], newHeadElements);
 
 }
 
@@ -103,20 +104,11 @@ module.exports = function(options) {
 
   return function posthtmlHeadElements(tree) {
 
-    var newTree = buildNewTree(options.headElements);
-
-    tree.match({tag: options.headElementsTag}, function(node) {
-
-      var newHTML = '';
-      var x;
-
-      for (x = 0; x < newTree.length; x++) {
-        newHTML += newTree[x];
-      }
-
-      node = newHTML;
-
-      return node;
+    tree.match({tag: options.headElementsTag}, function() {
+      return {
+        tag: false, // delete this node, safe content
+        content: buildNewTree(options.headElements)
+      };
     });
 
     /* tree.walk(function(node) {
