@@ -1,4 +1,5 @@
 # posthtml-head-elements [![Build Status][ci-img]][ci]
+[![devDependency Status](https://david-dm.org/tcotton/portfolio/dev-status.svg?style=flat-square)](https://david-dm.org/tcotton/posthtml-head-elements#info=devDependencies)
 
 [ci-img]: https://travis-ci.org/TCotton/posthtml-head-elements.svg
 [ci]: https://travis-ci.org/TCotton/posthtml-head-elements
