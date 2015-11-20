@@ -9,14 +9,13 @@
     "jshint": "^2.8.0",
     "mocha": "^2.3.3",
     "posthtml": "^0.7.0",
-    "posthtml-render": "^1.0.3",
     "snyk": "^1.1.1",
     "version-bump-prompt": "^1.5.2"
   },
   "peerDependencies": {},
   "scripts": {
     "build": "bump --prompt",
-    "test": "snyk test && jscs {,*/}*.js && jshint {,*/}*.js && mocha test/test.js"
+    "test": "snyk test && jscs index.js && jscs test/test.js && jshint index.js && jshint test/test.js && mocha test/test.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +32,6 @@
   "homepage": "https://github.com/TCotton/posthtml-head-elements#readme",
   "engines": {
     "node": ">=0.12.0",
-    "npm": ">=3.3.12"
+    "npm": ">=3.3.0"
   }
 }
