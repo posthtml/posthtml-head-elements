@@ -5,21 +5,20 @@ var util = require('util');
 /**
  *
  * @param type {string}
- * @param content {array}
- * @returns {{}}
+ * @param attrsArr {array}
+ * @returns {Array}
  */
-function nonString(type, content) {
+function nonString(type, attrsArr) {
 
   var x;
-  var newObject = {};
+  var newContent = [];
 
-  for (x = 0; x < content.length; x++) {
-    newObject[x] = {};
-    newObject[x].tag = type;
-    newObject[x].attrs = content[x];
+  for (x = 0; x < attrsArr.length; x++) {
+    newContent.push({tag: type, attrs: attrsArr[x]});
+    newContent.push('\n'); // ?
   }
 
-  return newObject;
+  return newContent;
 
 }
 
@@ -27,13 +26,13 @@ function nonString(type, content) {
  *
  * @param type {string}
  * @param content {array}
- * @returns {{tag: *, content: *[]}}
+ * @returns {string[]}
  */
 function nonArray(type, content) {
-  return {
-    tag: type,
-    content: [content]
-  };
+  return [
+    {tag: type, content: [content]},
+    '\n'
+  ];
 }
 
 /**
@@ -43,6 +42,7 @@ function nonArray(type, content) {
  * @returns {*}
  */
 function findElmType(type, objectData) {
+
   var elementType = {
     'meta': function() {
 
@@ -56,7 +56,7 @@ function findElmType(type, objectData) {
     'title': function() {
 
       if (typeof objectData === 'string') {
-        return nonArray(type, objectData);
+        return nonArray('title', objectData);
       } else {
         util.log('posthtml-head-elements: Please use the correct syntax for a title element');
       }
@@ -88,15 +88,23 @@ function findElmType(type, objectData) {
         util.log('posthtml-head-elements: Please use the correct syntax for a base element');
       }
 
+    },
+    'default': function() {
+      util.log('posthtml-head-elements: Please make sure the HTML head type is correct');
     }
   };
-  return elementType[type]();
+
+  if (type.indexOf('_') !== -1) {
+    type = type.substr(0, type.indexOf('_'));
+  }
+
+  return (elementType[type]() || elementType['default']());
 }
 
 /**
  *
  * @param headElements {object}
- * @returns {Array}
+ * @returns {Array.<T>}
  */
 function buildNewTree(headElements) {
 
@@ -108,7 +116,7 @@ function buildNewTree(headElements) {
 
   });
 
-  return newHeadElements;
+  return Array.prototype.concat.apply([], newHeadElements);
 
 }
 
@@ -123,41 +131,21 @@ module.exports = function(options) {
 
   return function posthtmlHeadElements(tree) {
 
-    var newTree = buildNewTree(options.headElements);
-
-    tree.match({tag: options.headElementsTag}, function(node) {
-
-      node = {};
-
-      Object.keys(newTree).forEach(function(value) {
-
-        if (typeof newTree[value].tag !== 'undefined' && newTree[value].tag === 'title') {
-
-          Object.assign(node, newTree[value]);
-
-        } else {
-
-          Object.getOwnPropertyNames(newTree[value]).forEach(function(val) {
-
-            console.dir(newTree[value][val]);
-
-          });
-
-        }
-
-      });
-
-      return node;
+    tree.match({tag: options.headElementsTag}, function() {
+      return {
+        tag: false, // delete this node, safe content
+        content: buildNewTree(options.headElements)
+      };
     });
 
-    tree.walk(function(node) {
+    /* tree.walk(function(node) {
 
-      if (node.tag === 'head') {
-        //console.dir(node.content);
-      }
+     if (node.tag === 'head') {
+     console.dir(node.content);
+     }
 
-      return node;
-    });
+     return node;
+     });*/
 
     return tree;
 

@@ -22,20 +22,56 @@
       "rel": "manifest",
       "href": "manifest.json"
     },
+  ],
+  "meta_1": [
+    {
+      "name": "mobile-web-app-capable",
+      "content": "yes"
+    },
+    {
+      "name": "application-name",
+      "content": "Web Starter Kit"
+    }
+  ],
+  "link_1": [
     {
       "rel": "icon",
       "sizes": "192x192",
       "href": "images/touch/chrome-touch-icon-192x192.png"
     }
   ],
-  "script": [
+  "meta_2": [
     {
-      "src": "//cdn.polyfill.io/v1/polyfill.min.js"
+      "name": "apple-mobile-web-app-capable",
+      "content": "yes"
+    },
+    {
+      "name": "apple-mobile-web-app-status-bar-style",
+      "content": "black"
+    },
+    {
+      "name": "apple-mobile-web-app-title",
+      "content": "Web Starter Kit"
     }
   ],
-  "base": [
+  "link_2": [
     {
-      "href": "/"
+      "rel": "apple-touch-icon",
+      "href": "images/touch/apple-touch-icon.png"
+    }
+  ],
+  "meta_3": [
+    {
+      "name": "msapplication-TileImage",
+      "content": "mages/touch/ms-touch-icon-144x144-precomposed.png"
+    },
+    {
+      "name": "msapplication-TileColor",
+      "content": "3372DF"
+    },
+    {
+      "name": "theme-color",
+      "content": "#3372DF"
     }
   ]
 }
