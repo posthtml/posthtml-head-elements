@@ -1,7 +1,7 @@
 {
   "name": "posthtml-head-elements",
   "version": "0.1.0",
-  "description": "Build HTML header elements from a JSON file",
+  "description": "Build HTML head elements from a JSON file",
   "main": "index.js",
   "devDependencies": {
     "chai": "^3.4.1",

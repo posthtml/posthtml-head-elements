@@ -2,7 +2,6 @@
 
 var util = require('util');
 var render = require('posthtml-render');
-var posthtml = require('posthtml');
 
 function nonString(type, content) {
 
@@ -120,14 +119,14 @@ module.exports = function(options) {
       return node;
     });
 
-   /* tree.walk(function(node) {
+    /* tree.walk(function(node) {
 
-      if (node.tag === 'head') {
-        console.dir(node.content);
-      }
+     if (node.tag === 'head') {
+     console.dir(node.content);
+     }
 
-      return node;
-    });*/
+     return node;
+     });*/
 
     return tree;
 
