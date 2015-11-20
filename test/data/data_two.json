@@ -21,7 +21,7 @@
     {
       "rel": "manifest",
       "href": "manifest.json"
-    },
+    }
   ],
   "meta_1": [
     {
@@ -72,6 +72,12 @@
     {
       "name": "theme-color",
       "content": "#3372DF"
+    }
+  ],
+  "link_3": [
+    {
+      "rel": "stylesheet",
+      "href": "styles/main.css"
     }
   ]
 }

@@ -14,12 +14,14 @@ function absolutePath(file) {
   return path.join(__dirname, file);
 }
 
-var pageOne = fs.readFileSync(absolutePath('html/page_one.html'), 'utf8').toString();
 var jsonOne = JSON.parse(fs.readFileSync(absolutePath('data/data_one.json'), 'utf8'));
+var pageTwo = fs.readFileSync(absolutePath('html/page_two.html'), 'utf8').toString();
+var pageTwoResult = fs.readFileSync(absolutePath('html/page_two_result.html'), 'utf8').toString();
+var jsonTwo = JSON.parse(fs.readFileSync(absolutePath('data/data_two.json'), 'utf8'));
 
-function test(input, output, done) {
+function testOne(input, output, jsonFile, done) {
   posthtml()
-    .use(posthtmlHeadElements({headElements: jsonOne}))
+    .use(posthtmlHeadElements({headElements: jsonFile}))
     .process(input)
     .then(function(result) {
       expect(output).to.eql(result.html);
@@ -29,8 +31,27 @@ function test(input, output, done) {
   });
 }
 
+function testTwo(input, output, jsonFile, done) {
+  posthtml()
+    .use(posthtmlHeadElements({headElements: jsonFile}))
+    .process(input)
+    .then(function(result) {
 
-it('test', function(done) {
+      expect(result.html).to.have.string('<meta charset="utf-8">');
+      expect(result.html).to.have.string('<title>Web Starter Kit</title>');
+      expect(result.html).to.have.string('<link rel="manifest" href="manifest.json">');
+      expect(result.html).to.have.string('<meta name="mobile-web-app-capable" content="yes">');
+      expect(result.html).to.have.string('<link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">');
+      expect(result.html).to.have.string('<meta name="msapplication-TileImage" content="mages/touch/ms-touch-icon-144x144-precomposed.png">');
+      expect(result.html).to.have.string('<link rel="stylesheet" href="styles/main.css">');
+
+      done();
+    }).catch(function(error) {
+    done(error);
+  });
+}
+
+it('test one', function(done) {
   var input = '<posthtml-head-elements></posthtml-head-elements>';
   var output = [
     '<meta charset="utf-8">',
@@ -44,5 +65,10 @@ it('test', function(done) {
     '<base href="/">'
   ].join('\n');
   output = output + '\n';
-  test(input, output, done);
+  testOne(input, output, jsonOne, done);
 });
+
+it('test two', function(done) {
+  testTwo(pageTwo, pageTwoResult, jsonTwo, done);
+});
+

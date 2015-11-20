@@ -138,15 +138,6 @@ module.exports = function(options) {
       };
     });
 
-    /* tree.walk(function(node) {
-
-     if (node.tag === 'head') {
-     console.dir(node.content);
-     }
-
-     return node;
-     });*/
-
     return tree;
 
   };
