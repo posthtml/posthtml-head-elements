@@ -18,7 +18,7 @@ function nonString(type, content) {
 }
 
 function nonArray(type, content) {
-  return render({tag: type, content: [content]})
+  return render({tag: type, content: [content]});
 }
 
 /**
@@ -106,7 +106,6 @@ module.exports = function(options) {
 
     tree.match({tag: options.headElementsTag}, function(node) {
 
-      node = {};
       var newHTML = '';
       var x;
 

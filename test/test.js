@@ -16,14 +16,14 @@ function absolutePath(file) {
 var pageOne = fs.readFileSync(absolutePath('html/page_one.html'), 'utf8').toString();
 var jsonOne = JSON.parse(fs.readFileSync(absolutePath('data/data_one.json'), 'utf8'));
 
-Object.keys(jsonOne).forEach(function(key) {
+/*Object.keys(jsonOne).forEach(function(key) {
 
-  if (Array.isArray(jsonOne[key])) {
-    // console.log(key);
-    // console.dir(jsonOne[key]);
-  }
+ if (Array.isArray(jsonOne[key])) {
+ console.log(key);
+ console.dir(jsonOne[key]);
+ }
 
-});
+ });*/
 
 function test(input, done) {
   console.log('run test');
