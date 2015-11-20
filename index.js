@@ -36,6 +36,7 @@ function findElmType(type, objectData) {
       } else {
         util.log('posthtml-head-elements: Please use the correct syntax for a meta element');
       }
+
     },
     'title': function() {
 
@@ -100,7 +101,7 @@ module.exports = function(options) {
     util.log('posthtml-head-elements: Don\'t forget to add a link to the JSON file containing the head elements to insert');
   }
 
-  return function postHeadElements(tree) {
+  return function posthtmlHeadElements(tree) {
 
     var newTree = buildNewTree(options.headElements);
 
