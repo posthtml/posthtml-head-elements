@@ -50,7 +50,7 @@ This plugin allow you to keep HTML head elements - title, script, link, base and
 }
 ```
 
-A custom tag is place in the document head, which signifies where the HTML head elements should be inserted during the build process:
+A custom tag is placed in the document head, which signifies where the HTML head elements should be inserted during the build process:
 
 ```html
 
@@ -86,9 +86,9 @@ posthtml()
     });
 ```
 
-Note that the HTML head elements are inserted into the document head in the order spatial order they are laid out - from top to bottom
+Note that the HTML head elements are inserted into the document in the spatial order they are laid out - from top to bottom
 
-It is possible to mix the head elements around but there will need to be a unique key which must have an underscore.
+It is possible to mix the head elements around but the JSON file syntax requires a unique key. If you are using more than one head element than use an underscore immediately afterwards.
 
 An example of a JSON file with multiple head elements is below.
 

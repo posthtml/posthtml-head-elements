@@ -14,7 +14,7 @@
   },
   "peerDependencies": {},
   "scripts": {
-    "test": "jscs {,*/}*.js && jshint {,*/}*.js && mocha test/test.js"
+    "test": "snyk test && jscs {,*/}*.js && jshint {,*/}*.js && mocha test/test.js"
   },
   "repository": {
     "type": "git",
