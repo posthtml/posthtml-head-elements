@@ -88,7 +88,7 @@ posthtml()
 
 Note that the HTML head elements are inserted into the document in the spatial order they are laid out - from top to bottom
 
-It is possible to mix the head elements around but the JSON file syntax requires a unique key. If you are using more than one head element than use an underscore immediately afterwards.
+It is possible to mix the head elements, but the JSON syntax requires a unique key. Therefore, if you are using more than one head element place an underscore immediately afterwards.
 
 An example of a JSON file with multiple head elements is below.
 
