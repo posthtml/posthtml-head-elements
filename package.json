@@ -15,7 +15,7 @@
   "peerDependencies": {},
   "scripts": {
     "build": "bump --prompt",
-    "test": "mocha test/test.js"
+    "test": "snyk --dev test && jscs index.js && jscs test/test.js && jshint index.js && jshint test/test.js && mocha test/test.js"
   },
   "repository": {
     "type": "git",

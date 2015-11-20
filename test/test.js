@@ -20,7 +20,6 @@ var pageTwoResult = fs.readFileSync(absolutePath('html/page_two_result.html'), '
 var jsonTwo = './test/data/data_two.json';
 var pageThree = fs.readFileSync(absolutePath('html/page_three.html'), 'utf8').toString();
 var pageThreeResult = fs.readFileSync(absolutePath('html/page_three_result.html'), 'utf8').toString();
-//  "test": "snyk --dev test && jscs index.js && jscs test/test.js && jshint index.js && jshint test/test.js && mocha test/test.js"
 
 function testOne(input, output, jsonFile, done) {
   posthtml()
