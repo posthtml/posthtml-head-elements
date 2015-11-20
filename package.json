@@ -1,6 +1,6 @@
 {
   "name": "posthtml-head-elements",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "Build HTML head elements from a JSON file",
   "main": "index.js",
   "devDependencies": {
@@ -15,7 +15,7 @@
   "peerDependencies": {},
   "scripts": {
     "build": "bump --prompt",
-    "test": "snyk --dev test && jscs index.js && jscs test/test.js && jshint index.js && jshint test/test.js && mocha test/test.js"
+    "test": "mocha test/test.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,6 @@
   "homepage": "https://github.com/TCotton/posthtml-head-elements#readme",
   "engines": {
     "node": ">=0.12.0",
-    "npm": ">=3.3.0"
+    "npm": ">=3.3.12"
   }
 }

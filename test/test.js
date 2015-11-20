@@ -14,12 +14,13 @@ function absolutePath(file) {
   return path.join(__dirname, file);
 }
 
-var jsonOne = JSON.parse(fs.readFileSync(absolutePath('data/data_one.json'), 'utf8'));
+var jsonOne = './test/data/data_one.json';
 var pageTwo = fs.readFileSync(absolutePath('html/page_two.html'), 'utf8').toString();
 var pageTwoResult = fs.readFileSync(absolutePath('html/page_two_result.html'), 'utf8').toString();
-var jsonTwo = JSON.parse(fs.readFileSync(absolutePath('data/data_two.json'), 'utf8'));
+var jsonTwo = './test/data/data_two.json';
 var pageThree = fs.readFileSync(absolutePath('html/page_three.html'), 'utf8').toString();
 var pageThreeResult = fs.readFileSync(absolutePath('html/page_three_result.html'), 'utf8').toString();
+//  "test": "snyk --dev test && jscs index.js && jscs test/test.js && jshint index.js && jshint test/test.js && mocha test/test.js"
 
 function testOne(input, output, jsonFile, done) {
   posthtml()

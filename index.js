@@ -1,6 +1,7 @@
 'use strict';
 
 var util = require('util');
+var fs = require('fs');
 
 /**
  *
@@ -127,12 +128,14 @@ module.exports = function(options) {
     util.log('posthtml-head-elements: Don\'t forget to add a link to the JSON file containing the head elements to insert');
   }
 
+  var jsonOne = JSON.parse(fs.readFileSync(options.headElements), 'utf8');
+
   return function posthtmlHeadElements(tree) {
 
     tree.match({tag: options.headElementsTag}, function() {
       return {
         tag: false, // delete this node, safe content
-        content: buildNewTree(options.headElements)
+        content: buildNewTree(jsonOne)
       };
     });
 
