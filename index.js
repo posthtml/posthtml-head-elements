@@ -1,24 +1,39 @@
 'use strict';
 
 var util = require('util');
-var render = require('posthtml-render');
 
+/**
+ *
+ * @param type {string}
+ * @param content {array}
+ * @returns {{}}
+ */
 function nonString(type, content) {
 
   var x;
-  var newObject = '';
+  var newObject = {};
 
   for (x = 0; x < content.length; x++) {
-    newObject += render({tag: type, attrs: content[x]});
-    newObject += '\n';
+    newObject[x] = {};
+    newObject[x].tag = type;
+    newObject[x].attrs = content[x];
   }
 
   return newObject;
 
 }
 
+/**
+ *
+ * @param type {string}
+ * @param content {array}
+ * @returns {{tag: *, content: *[]}}
+ */
 function nonArray(type, content) {
-  return render({tag: type, content: [content]});
+  return {
+    tag: type,
+    content: [content]
+  };
 }
 
 /**
@@ -78,6 +93,11 @@ function findElmType(type, objectData) {
   return elementType[type]();
 }
 
+/**
+ *
+ * @param headElements {object}
+ * @returns {Array}
+ */
 function buildNewTree(headElements) {
 
   var newHeadElements = [];
@@ -107,26 +127,37 @@ module.exports = function(options) {
 
     tree.match({tag: options.headElementsTag}, function(node) {
 
-      var newHTML = '';
-      var x;
+      node = {};
 
-      for (x = 0; x < newTree.length; x++) {
-        newHTML += newTree[x];
-      }
+      Object.keys(newTree).forEach(function(value) {
 
-      node = newHTML;
+        if (typeof newTree[value].tag !== 'undefined' && newTree[value].tag === 'title') {
+
+          Object.assign(node, newTree[value]);
+
+        } else {
+
+          Object.getOwnPropertyNames(newTree[value]).forEach(function(val) {
+
+            console.dir(newTree[value][val]);
+
+          });
+
+        }
+
+      });
 
       return node;
     });
 
-    /* tree.walk(function(node) {
+    tree.walk(function(node) {
 
-     if (node.tag === 'head') {
-     console.dir(node.content);
-     }
+      if (node.tag === 'head') {
+        //console.dir(node.content);
+      }
 
-     return node;
-     });*/
+      return node;
+    });
 
     return tree;
 

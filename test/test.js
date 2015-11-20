@@ -2,7 +2,7 @@
 var fs = require('fs');
 var path = require('path');
 var posthtml = require('posthtml');
-// var expect = require('chai').expect;
+var expect = require('chai').expect;
 var posthtmlHeadElements = require('..');
 /**
  * @param file {string}
@@ -25,16 +25,13 @@ var jsonOne = JSON.parse(fs.readFileSync(absolutePath('data/data_one.json'), 'ut
 
  });*/
 
-function test(input, done) {
-  console.log('run test');
+function test(input, output, options, done) {
   posthtml()
     .use(posthtmlHeadElements({headElements: jsonOne}))
-    .process(input, {sync: false})
+    .process(input)
     .then(function(result) {
-      console.log('result');
       console.dir(result);
-      // console.dir(result);
-      // expect(output).to.eql(result.html);
+      expect(output).to.eql(result.html);
       done();
     }).catch(function(error) {
     done(error);
