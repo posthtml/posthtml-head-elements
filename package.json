@@ -1,6 +1,6 @@
 {
   "name": "posthtml-head-elements",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Build HTML head elements from a JSON file",
   "main": "index.js",
   "devDependencies": {
@@ -10,10 +10,12 @@
     "mocha": "^2.3.3",
     "posthtml": "^0.7.0",
     "posthtml-render": "^1.0.3",
-    "snyk": "^1.1.1"
+    "snyk": "^1.1.1",
+    "version-bump-prompt": "^1.5.2"
   },
   "peerDependencies": {},
   "scripts": {
+    "build": "bump --prompt",
     "test": "snyk test && jscs {,*/}*.js && jshint {,*/}*.js && mocha test/test.js"
   },
   "repository": {
