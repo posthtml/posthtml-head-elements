@@ -1,10 +1,10 @@
 'use strict';
+// jshint maxstatements:10
 var fs = require('fs');
 var path = require('path');
 var posthtml = require('posthtml');
 var expect = require('chai').expect;
 var posthtmlHeadElements = require('..');
-// "test": "jscs {,*/}*.js && jshint {,*/}*.js && mocha test/test.js"
 
 /**
  * @param file {string}

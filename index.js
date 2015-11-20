@@ -19,7 +19,6 @@ function nonString(type, attrsArr) {
   }
 
   return newContent;
-
 }
 
 /**
@@ -117,7 +116,6 @@ function buildNewTree(headElements) {
   });
 
   return Array.prototype.concat.apply([], newHeadElements);
-
 }
 
 module.exports = function(options) {
