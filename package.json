@@ -22,7 +22,9 @@
     "url": "git+https://github.com/TCotton/posthtml-head-elements.git"
   },
   "keywords": [
-    "posthtml"
+    "posthtml",
+    "posthtml-plugin",
+    "html"
   ],
   "author": "Andy Walpole",
   "license": "MIT",

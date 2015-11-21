@@ -4,7 +4,7 @@
 [ci-img]: https://travis-ci.org/TCotton/posthtml-head-elements.svg
 [ci]: https://travis-ci.org/TCotton/posthtml-head-elements
 
-This plugin allow you to keep HTML head elements - title, script, link, base and meta - in a separate JSON file:
+This [PostHTML](https://github.com/posthtml/posthtml) plugin allow you to keep HTML head elements - title, script, link, base and meta - in a separate JSON file:
 
 ```json
 {
@@ -59,7 +59,7 @@ A custom tag, which signifies where the HTML head elements should be inserted du
 <head>
 
   <posthtml-head-elements></posthtml-head-elements>
-  
+
   <!-- Add to homescreen for Chrome on Android -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="Web Starter Kit">
