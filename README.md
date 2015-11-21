@@ -1,10 +1,12 @@
-# posthtml-head-elements [![Build Status][ci-img]][ci]
+# posthtml-head-elements 
+
+[![Build Status][ci-img]][ci]
 [![devDependency Status](https://david-dm.org/tcotton/portfolio/dev-status.svg?style=flat-square)](https://david-dm.org/tcotton/posthtml-head-elements#info=devDependencies)
 
 [ci-img]: https://travis-ci.org/TCotton/posthtml-head-elements.svg
 [ci]: https://travis-ci.org/TCotton/posthtml-head-elements
 
-This [PostHTML](https://github.com/posthtml/posthtml) plugin allow you to keep HTML head elements - title, script, link, base and meta - in a separate JSON file:
+This plugin is intended to work with [PostHTML](https://github.com/posthtml/posthtml). It will allow you to keep HTML head elements - title, script, link, base and meta - in a separate JSON file:
 
 ```json
 {
@@ -66,24 +68,27 @@ A custom tag, which signifies where the HTML head elements should be inserted du
 
 ```
 
-
-This is then configured like so:
+This is then configured like below if you are using [gulp-posthtml](https://www.npmjs.com/package/gulp-posthtml).
+Please read the [PostHTML GitHub page](https://github.com/posthtml/posthtml) for plugin configuration guidelines.
 
 ```javascript
-posthtml()
-    .use(require('posthtml-head-elements')({
-        headElements: 'path/to/json/file.json'
-    }))
-    .process(input, {
-        sync: false
-    })
-    .then(function(result) {
-        console.log('result');
-        console.dir(result);
-        done();
-    }).catch(function(error) {
-        done(error);
-    });
+
+var posthtml = require('gulp-posthtml');
+var gulp = require('gulp');
+var jsonPath = '/data/posthtml-head-elements.json';
+
+gulp.task('posthtml', function() {
+
+  var plugins = [
+    require('posthtml-head-elements')({headElements: jsonPath})
+  ];
+
+  return gulp.src('/app/index.html')
+    .pipe(posthtml(plugins))
+    .pipe(gulp.dest('/build/'));
+
+});
+
 ```
 
 Note that the HTML head elements are inserted into the document in the spatial order they are laid out - from top to bottom
