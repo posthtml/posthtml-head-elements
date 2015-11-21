@@ -10,16 +10,9 @@ var fs = require('fs');
  * @returns {Array}
  */
 function nonString(type, attrsArr) {
-
-  var x;
-  var newContent = [];
-
-  for (x = 0; x < attrsArr.length; x++) {
-    newContent.push({tag: type, attrs: attrsArr[x]});
-    newContent.push('\n'); // ?
-  }
-
-  return newContent;
+  return attrsArr.map(function(attrs) {
+    return {tag: type, attrs: attrs};
+  });
 }
 
 /**
@@ -29,10 +22,7 @@ function nonString(type, attrsArr) {
  * @returns {string[]}
  */
 function nonArray(type, content) {
-  return [
-    {tag: type, content: [content]},
-    '\n'
-  ];
+  return {tag: type, content: [content]};
 }
 
 /**
@@ -106,7 +96,7 @@ function findElmType(type, objectData) {
  * @param headElements {object}
  * @returns {Array.<T>}
  */
-function buildNewTree(headElements) {
+function buildNewTree(headElements, EOL) {
 
   var newHeadElements = [];
 
@@ -116,13 +106,19 @@ function buildNewTree(headElements) {
 
   });
 
-  return Array.prototype.concat.apply([], newHeadElements);
+  function cnct(arr) {
+    return Array.prototype.concat.apply([], arr);
+  }
+
+  return cnct(cnct(newHeadElements).map(function(elem) {
+    return [elem, EOL];
+  }));
 }
 
 module.exports = function(options) {
 
   options = options || {};
-  options.headElementsTag = 'posthtml-head-elements';
+  options.headElementsTag = options.headElementsTag || 'posthtml-head-elements';
 
   if (!options.headElements) {
     util.log('posthtml-head-elements: Don\'t forget to add a link to the JSON file containing the head elements to insert');
@@ -135,7 +131,7 @@ module.exports = function(options) {
     tree.match({tag: options.headElementsTag}, function() {
       return {
         tag: false, // delete this node, safe content
-        content: buildNewTree(jsonOne)
+        content: buildNewTree(jsonOne, options.EOL || '\n')
       };
     });
 
