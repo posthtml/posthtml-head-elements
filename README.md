@@ -2,6 +2,7 @@
 
 [![Build Status][ci-img]][ci]
 [![devDependency Status](https://david-dm.org/tcotton/portfolio/dev-status.svg?style=flat-square)](https://david-dm.org/tcotton/posthtml-head-elements#info=devDependencies)
+[![npm version](https://badge.fury.io/js/posthtml-head-elements.svg)](http://badge.fury.io/js/posthtml-head-elements)
 
 [ci-img]: https://travis-ci.org/TCotton/posthtml-head-elements.svg
 [ci]: https://travis-ci.org/TCotton/posthtml-head-elements
