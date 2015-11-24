@@ -4,6 +4,7 @@
 [![devDependency Status](https://david-dm.org/tcotton/portfolio/dev-status.svg?style=flat-square)](https://david-dm.org/tcotton/posthtml-head-elements#info=devDependencies)
 [![npm version](https://badge.fury.io/js/posthtml-head-elements.svg)](http://badge.fury.io/js/posthtml-head-elements)
 [![Coverage Status](https://coveralls.io/repos/TCotton/posthtml-head-elements/badge.svg?branch=master&service=github)](https://coveralls.io/github/TCotton/posthtml-head-elements?branch=master)
+
 [ci-img]: https://travis-ci.org/TCotton/posthtml-head-elements.svg
 [ci]: https://travis-ci.org/TCotton/posthtml-head-elements
 
