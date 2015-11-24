@@ -1,11 +1,12 @@
 {
   "name": "posthtml-head-elements",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "Build HTML head elements from a JSON file",
   "main": "index.js",
   "devDependencies": {
     "chai": "^3.4.1",
     "coveralls": "^2.11.4",
+    "cz-conventional-changelog": "^1.1.4",
     "istanbul": "^0.4.0",
     "jscs": "^2.5.1",
     "jshint": "^2.8.0",
@@ -38,5 +39,10 @@
   "engines": {
     "node": ">=0.12.0",
     "npm": ">=3.3.12"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
