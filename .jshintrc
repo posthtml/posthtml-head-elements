@@ -37,16 +37,12 @@
     "onmessage": false,
     "postMessage": false,
     "self": false
-
   },
 
   "debug": false,
   "devel": false,
-
   "esnext": true,
   "strict": true,
-  "globalstrict": true,
-
   "asi": false,
   "laxbreak": false,
   "laxcomma": false,
