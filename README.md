@@ -3,10 +3,10 @@
 [![Build Status][ci-img]][ci]
 [![devDependency Status](https://david-dm.org/tcotton/portfolio/dev-status.svg?style=flat-square)](https://david-dm.org/tcotton/posthtml-head-elements#info=devDependencies)
 [![npm version](https://badge.fury.io/js/posthtml-head-elements.svg)](http://badge.fury.io/js/posthtml-head-elements)
-[![Coverage Status](https://coveralls.io/repos/TCotton/posthtml-head-elements/badge.svg?branch=master&service=github)](https://coveralls.io/github/TCotton/posthtml-head-elements?branch=master)
+[![Coverage Status](https://coveralls.io/repos/posthtml/posthtml-head-elements/badge.svg?branch=master&service=github)](https://coveralls.io/github/posthtml/posthtml-head-elements?branch=master)
 
-[ci-img]: https://travis-ci.org/TCotton/posthtml-head-elements.svg
-[ci]: https://travis-ci.org/TCotton/posthtml-head-elements
+[ci-img]: https://travis-ci.org/posthtml/posthtml-head-elements.svg
+[ci]: https://travis-ci.org/posthtml/posthtml-head-elements
 
 This plugin is intended to work with [PostHTML](https://github.com/posthtml/posthtml). It will allow you to keep HTML head elements - title, script, link, base and meta - in a separate JSON file:
 

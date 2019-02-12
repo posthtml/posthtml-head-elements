@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TCotton/posthtml-head-elements.git"
+    "url": "git+https://github.com/posthtml/posthtml-head-elements.git"
   },
   "keywords": [
     "posthtml",
@@ -32,9 +32,9 @@
   "author": "Andy Walpole",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TCotton/posthtml-head-elements/issues"
+    "url": "https://github.com/posthtml/posthtml-head-elements/issues"
   },
-  "homepage": "https://github.com/TCotton/posthtml-head-elements#readme",
+  "homepage": "https://github.com/posthtml/posthtml-head-elements#readme",
   "engines": {
     "node": ">=6.11.3",
     "npm": ">=3.10.10"
