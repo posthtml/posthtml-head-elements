@@ -17,8 +17,7 @@
   "peerDependencies": {},
   "scripts": {
     "build": "bump --prompt",
-    "istanbul": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "test": "jscs index.js && jscs test/test.js && jshint index.js && jshint test/test.js && mocha test/test.js && npm run istanbul"
+    "test": "jscs index.js && jscs test/test.js && jshint index.js && jshint test/test.js && mocha test/test.js"
   },
   "repository": {
     "type": "git",
