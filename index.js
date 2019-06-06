@@ -1,7 +1,6 @@
 'use strict';
 
 var util = require('util');
-var fs = require('fs');
 
 /**
  *
@@ -116,15 +115,13 @@ function buildNewTree(headElements, EOL) {
 }
 
 module.exports = function(options) {
-
   options = options || {};
   options.headElementsTag = options.headElementsTag || 'posthtml-head-elements';
 
   if (!options.headElements) {
     util.log('posthtml-head-elements: Don\'t forget to add a link to the JSON file containing the head elements to insert');
   }
-
-  var jsonOne = JSON.parse(fs.readFileSync(options.headElements), 'utf8');
+  var jsonOne = typeof options.headElements !== 'string' ? options.headElements : require(options.headElements);
 
   return function posthtmlHeadElements(tree) {
 
