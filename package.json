@@ -1,6 +1,6 @@
 {
   "name": "posthtml-head-elements",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Build HTML head elements from a JSON file",
   "main": "index.js",
   "devDependencies": {
